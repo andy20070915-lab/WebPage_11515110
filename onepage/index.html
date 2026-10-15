@@ -118,7 +118,7 @@
     .art-label strong { color: var(--sky); font: 700 22px/1 "Playfair Display", serif; }
 
     /* Story */
-    .story { padding: 118px 0; background: #fff; }
+    .story { padding: 118px 0; background: var(--mist); }
     .story-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(45px, 8vw, 105px); align-items: center; }
     .story-visual { position: relative; min-height: 416px; }
     .seal { position: absolute; top: 0; left: 0; width: 310px; height: 310px; display: grid; place-items: center; border: 1px solid #a8d2df; border-radius: 50%; color: var(--blue); background: radial-gradient(circle at 35% 30%, #fff 0, #eaf6f8 68%, #d9edf1 100%); }
@@ -187,7 +187,8 @@
     .visit h2 { margin: 0; font: 800 clamp(30px, 4vw, 46px)/1.3 "Noto Serif TC", serif; letter-spacing: .045em; }
     .visit p { max-width: 510px; margin: 19px auto 29px; color: rgba(255,255,255,.72); }
     .subscribe-form { display: flex; min-height: 58px; border: 1px solid rgba(255,255,255,.62); }
-    .subscribe-form input { min-width: 0; flex: 1; padding: 0 18px; border: 0; color: #fff; outline: none; background: transparent; }
+    .subscribe-form input { min-width: 0; flex: 1; padding: 0 18px; border: 0; color: #fff; background: transparent; }
+    .subscribe-form input:focus-visible { outline: 3px solid var(--sky); outline-offset: 3px; }
     .subscribe-form input::placeholder { color: rgba(255,255,255,.56); }
     .subscribe-form button { padding: 0 23px; border: 0; color: var(--navy); background: var(--sand); font-size: 14px; font-weight: 700; white-space: nowrap; transition: background .2s; }
     .subscribe-form button:hover { background: #f1cb8b; }
@@ -384,7 +385,7 @@
 
   <footer class="site-footer">
     <div class="wrap footer-grid">
-      <div class="footer-brand"><a class="brand" href="#top" aria-label="回到藍天咖啡首頁"><span class="brand-mark" aria-hidden="true">B</span><span class="brand-copy"><strong>藍天咖啡</strong><small>BLUE SKY COFFEE</small></span></a><p>為喜愛手沖咖啡的你，留下 一段慢慢品味、微微放晴的時間。</p></div>
+      <div class="footer-brand"><a class="brand" href="#top" aria-label="回到藍天咖啡首頁"><span class="brand-mark" aria-hidden="true">B</span><span class="brand-copy"><strong>藍天咖啡</strong><small>BLUE SKY COFFEE</small></span></a><p>為喜愛手沖咖啡的你，留下一段慢慢品味、微微放晴的時刻。</p></div>
       <div><p class="footer-title">網站主題</p><div class="footer-links"><a href="#story">我們的故事</a><a href="#coffee">本季選豆</a><a href="#brew">沖煮日常</a></div></div>
       <div><p class="footer-title">聯絡我們</p><div class="footer-links"><a href="mailto:hello@bluesky.coffee">hello@bluesky.coffee</a><address>台中市西屯區僑光路 100 號</address><span>每日 10:00 — 19:00</span></div></div>
     </div>
