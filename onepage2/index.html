@@ -3,518 +3,2473 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="藍天咖啡，為手沖咖啡愛好者挑選當季精品咖啡豆，讓每一杯都清澈、明亮、值得細品。">
-  <title>藍天咖啡｜讓風味，慢慢抵達</title>
+  <meta name="description" content="植得期待｜專為熱愛居家生活與家庭佈置打造的風格盆栽選品店。精選客廳大植栽、桌上療癒觀葉、窗台垂墜植物，為家添上一抹生機。">
+  <title>植得期待 ｜ 遇見心動綠意，點亮居家佈置風格</title>
+  
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&family=Noto+Serif+TC:wght@600;700;900&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700&family=Noto+Serif+TC:wght@600;700;900&display=swap" rel="stylesheet">
+
   <style>
+    /* ---------------------------------
+       變數與全域設定 (以綠色為品牌核心)
+    ----------------------------------- */
     :root {
-      --navy: #062742;
-      --blue: #0c5b95;
-      --sky: #75c6e8;
-      --mist: #eaf5f7;
-      --cream: #fbfaf6;
-      --ink: #122534;
-      --muted: #607482;
-      --line: #d7e4e8;
-      --sand: #e5b66b;
-      --shadow: 0 18px 50px rgba(6, 39, 66, .13);
+      --primary-dark: #1b382b;      /* 森林深綠 */
+      --primary: #2d5a42;           /* 典雅植綠 */
+      --primary-light: #447b5c;     /* 葉綠 */
+      --accent-green: #67a27d;      /* 嫩芽綠 */
+      --mint-bg: #eef6f0;           /* 晨霧薄荷綠 */
+      --warm-bg: #f9fbf9;           /* 輕柔暖白底色 */
+      --sand-gold: #c2a677;         /* 陶盆杏土金色 */
+      --sand-light: #f5efe6;        /* 輕陶米灰 */
+      --text-main: #1e2a22;         /* 墨黑內文 */
+      --text-muted: #5e6f65;        /* 灰綠次要文字 */
+      --border-color: #dbe7df;      /* 柔和邊框 */
+      --card-bg: #ffffff;
+      --shadow-sm: 0 4px 14px rgba(27, 56, 43, 0.06);
+      --shadow-md: 0 10px 30px rgba(27, 56, 43, 0.1);
+      --shadow-lg: 0 20px 40px rgba(27, 56, 43, 0.16);
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --font-serif: "Noto Serif TC", serif;
+      --font-sans: "Noto Sans TC", sans-serif;
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
+    * {
+      box-sizing: border-box;
       margin: 0;
-      color: var(--ink);
-      background: var(--cream);
-      font-family: "Noto Sans TC", sans-serif;
-      font-size: 16px;
-      line-height: 1.7;
-      -webkit-font-smoothing: antialiased;
+      padding: 0;
     }
-    a { color: inherit; text-decoration: none; }
-    button, input { font: inherit; }
-    button { cursor: pointer; }
-    img { display: block; max-width: 100%; }
-    :focus-visible { outline: 3px solid var(--sky); outline-offset: 4px; }
 
-    .wrap { width: min(1120px, calc(100% - 48px)); margin: 0 auto; }
-    .eyebrow {
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      color: var(--text-main);
+      background-color: var(--warm-bg);
+      line-height: 1.75;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.25s ease;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+    }
+
+    .container {
+      width: min(1200px, 92%);
+      margin: 0 auto;
+    }
+
+    /* 頂部標語 (公告列) */
+    .announcement-bar {
+      background: var(--primary-dark);
+      color: #e2f0e7;
+      font-size: 13px;
+      text-align: center;
+      padding: 8px 16px;
+      letter-spacing: 0.05em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .announcement-bar span {
+      background: rgba(255, 255, 255, 0.18);
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 11px;
+    }
+
+    /* ---------------------------------
+       導覽列 (Header & Navigation)
+    ----------------------------------- */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-color);
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+
+    .nav-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 76px;
+    }
+
+    .brand-logo {
       display: flex;
       align-items: center;
       gap: 12px;
-      margin: 0 0 17px;
-      color: var(--blue);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: .18em;
-      line-height: 1.35;
+      color: var(--primary-dark);
     }
-    .eyebrow::before { width: 28px; height: 1px; background: currentColor; content: ""; }
-    .section-title {
-      margin: 0;
-      font-family: "Noto Serif TC", serif;
-      font-size: clamp(30px, 4vw, 46px);
-      font-weight: 900;
-      letter-spacing: .035em;
-      line-height: 1.28;
-    }
-    .blue-word { color: var(--blue); }
-    .section-copy { margin: 20px 0 0; color: var(--muted); }
-    .text-link {
-      display: inline-block;
-      margin-top: 29px;
-      padding-bottom: 7px;
-      border-bottom: 1px solid var(--blue);
-      color: var(--blue);
-      font-size: 14px;
-      font-weight: 700;
-      transition: color .2s ease, letter-spacing .2s ease;
-    }
-    .text-link:hover { color: var(--navy); letter-spacing: .04em; }
 
-    /* Header */
-    .site-header {
-      position: absolute;
-      z-index: 10;
-      top: 0;
-      left: 0;
-      width: 100%;
-      border-bottom: 1px solid rgba(255,255,255,.23);
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
       color: #fff;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 4px 10px rgba(45, 90, 66, 0.25);
     }
-    .nav-bar {
+
+    .brand-text h1 {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      line-height: 1.1;
+      color: var(--primary-dark);
+    }
+
+    .brand-text span {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      color: var(--primary-light);
+      display: block;
+      font-weight: 500;
+    }
+
+    .nav-menu {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      min-height: 78px;
+      gap: 32px;
+      list-style: none;
     }
-    .brand { display: inline-flex; align-items: center; gap: 11px; min-width: max-content; }
-    .brand-mark {
-      display: grid;
-      width: 29px;
-      height: 29px;
-      place-items: center;
-      border: 1px solid var(--sky);
-      border-radius: 50%;
-      color: var(--sky);
-      font-family: "Playfair Display", serif;
-      font-size: 16px;
-      line-height: 1;
-    }
-    .brand-name { display: grid; gap: 0; font-size: 13px; font-weight: 600; letter-spacing: .08em; line-height: 1.3; }
-    .brand-name small { color: var(--sky); font-size: 8px; font-weight: 700; letter-spacing: .16em; }
-    .nav-links { display: flex; align-items: center; gap: 29px; list-style: none; margin: 0; padding: 0; }
-    .nav-links a { position: relative; display: inline-block; padding: 8px 0; font-size: 13px; font-weight: 500; }
-    .nav-links a:not(.nav-cta)::after {
-      position: absolute;
-      right: 0;
-      bottom: 2px;
-      width: 0;
-      height: 1px;
-      background: var(--sky);
-      content: "";
-      transition: width .25s ease;
-    }
-    .nav-links a:not(.nav-cta):hover::after { right: auto; left: 0; width: 100%; }
-    .nav-links .nav-cta { padding: 7px 13px; border: 1px solid rgba(255,255,255,.9); transition: color .2s ease, background .2s ease; }
-    .nav-links .nav-cta:hover { color: var(--navy); background: #fff; }
-    .menu-toggle { display: none; border: 0; background: transparent; color: #fff; font-size: 26px; line-height: 1; }
 
-    /* Hero */
-    .hero {
+    .nav-link {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-main);
       position: relative;
-      isolation: isolate;
-      display: grid;
-      min-height: 704px;
-      overflow: hidden;
-      color: #fff;
-      background:
-        radial-gradient(circle at 83% 25%, rgba(117,198,232,.42), transparent 16%),
-        radial-gradient(circle at 80% 57%, rgba(16,99,150,.52), transparent 28%),
-        linear-gradient(122deg, #041e35 0%, var(--navy) 52%, #084b7c 100%);
+      padding: 6px 0;
     }
-    .hero::before, .hero::after { position: absolute; z-index: -1; border: 1px solid rgba(117,198,232,.22); border-radius: 50%; content: ""; }
-    .hero::before { width: 610px; height: 610px; top: -250px; right: -134px; }
-    .hero::after { width: 410px; height: 410px; top: -150px; right: -35px; }
-    .hero-inner { display: grid; grid-template-columns: 1.02fr .98fr; gap: 45px; align-items: center; width: min(1120px, calc(100% - 48px)); margin: 0 auto; padding: 122px 0 72px; }
-    .hero .eyebrow { color: var(--sky); }
-    .hero-title { max-width: 650px; margin: 0; font-family: "Noto Serif TC", serif; font-size: clamp(42px, 5.5vw, 68px); font-weight: 900; letter-spacing: .06em; line-height: 1.22; }
-    .hero-title .sky-text { color: var(--sky); }
-    .hero-lede { max-width: 535px; margin: 26px 0 0; color: rgba(255,255,255,.77); font-size: 16px; line-height: 1.9; }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 31px; }
-    .button {
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--primary);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .cart-btn {
+      position: relative;
+      background: var(--mint-bg);
+      border: 1px solid var(--border-color);
+      color: var(--primary-dark);
+      padding: 9px 18px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .cart-btn:hover {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .cart-badge {
+      background: #d9534f;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: inline-grid;
+      place-items: center;
+    }
+
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 26px;
+      color: var(--primary-dark);
+      cursor: pointer;
+    }
+
+    /* ---------------------------------
+       按鈕元件 (Buttons)
+    ----------------------------------- */
+    .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 50px;
-      padding: 12px 23px;
+      gap: 10px;
+      padding: 13px 28px;
+      border-radius: 30px;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
       border: 1px solid transparent;
-      border-radius: 2px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: #ffffff;
+      box-shadow: 0 6px 20px rgba(27, 56, 43, 0.2);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(27, 56, 43, 0.26);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--primary-dark);
+      border: 1px solid var(--border-color);
+      backdrop-filter: blur(8px);
+    }
+
+    .btn-secondary:hover {
+      background: var(--mint-bg);
+      border-color: var(--primary-light);
+      color: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    /* ---------------------------------
+       首頁主視覺 (Hero Section)
+    ----------------------------------- */
+    .hero-section {
+      position: relative;
+      padding: 70px 0 80px;
+      background: radial-gradient(circle at 80% 20%, #e3f2e7 0%, var(--warm-bg) 65%);
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.95fr;
+      align-items: center;
+      gap: 48px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: var(--mint-bg);
+      border: 1px solid #c9e3d2;
+      border-radius: 20px;
+      color: var(--primary-dark);
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .hero-badge svg {
+      width: 16px;
+      height: 16px;
+      fill: var(--primary);
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(34px, 4.5vw, 54px);
+      line-height: 1.25;
+      font-weight: 900;
+      color: var(--primary-dark);
+      margin-bottom: 22px;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-title .highlight {
+      color: var(--primary);
+      position: relative;
+      display: inline-block;
+    }
+
+    .hero-title .highlight::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 6px;
+      width: 100%;
+      height: 10px;
+      background: rgba(103, 162, 125, 0.28);
+      z-index: -1;
+      border-radius: 4px;
+    }
+
+    .hero-desc {
+      font-size: 17px;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin-bottom: 34px;
+      line-height: 1.8;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .hero-features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .hero-feature-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .feature-icon-bubble {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: var(--mint-bg);
+      display: grid;
+      place-items: center;
+      color: var(--primary);
+      flex-shrink: 0;
+    }
+
+    .feature-text strong {
+      display: block;
+      font-size: 13px;
+      color: var(--primary-dark);
+    }
+
+    .feature-text span {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Hero 圖片區塊 */
+    .hero-image-wrap {
+      position: relative;
+    }
+
+    .hero-image-card {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      background: #e9efe9;
+      aspect-ratio: 4 / 4.6;
+    }
+
+    .hero-image-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .hero-image-card:hover img {
+      transform: scale(1.03);
+    }
+
+    .floating-decor-card {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      padding: 16px 20px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-md);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      z-index: 2;
+    }
+
+    .decor-card-1 {
+      bottom: -24px;
+      left: -24px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      max-width: 250px;
+    }
+
+    .decor-card-2 {
+      top: 30px;
+      right: -20px;
+      text-align: right;
+    }
+
+    .avatar-stack {
+      display: flex;
+    }
+
+    .avatar-stack span {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      margin-left: -8px;
+      background: var(--primary-light);
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .avatar-stack span:first-child {
+      margin-left: 0;
+      background: var(--sand-gold);
+    }
+
+    /* ---------------------------------
+       品牌核心價值 (Why Choose Us)
+    ----------------------------------- */
+    .values-section {
+      padding: 60px 0;
+      background: #fff;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .value-box {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 18px;
+      border-radius: var(--radius-sm);
+      transition: background 0.2s;
+    }
+
+    .value-box:hover {
+      background: var(--mint-bg);
+    }
+
+    .value-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--mint-bg);
+      color: var(--primary);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      font-size: 20px;
+    }
+
+    .value-box:hover .value-icon {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .value-content h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 4px;
+    }
+
+    .value-content p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ---------------------------------
+       區塊標題共用元件
+    ----------------------------------- */
+    .section-head {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 48px;
+    }
+
+    .section-sub {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      color: var(--primary);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(26px, 3.5vw, 38px);
+      font-weight: 700;
+      color: var(--primary-dark);
+      line-height: 1.3;
+      margin-bottom: 14px;
+    }
+
+    .section-desc {
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ---------------------------------
+       產品分類與篩選 (Category Filter)
+    ----------------------------------- */
+    .catalog-section {
+      padding: 90px 0;
+    }
+
+    .filter-bar {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+
+    .filter-btn {
+      padding: 9px 22px;
+      border-radius: 30px;
+      border: 1px solid var(--border-color);
+      background: #fff;
+      color: var(--text-muted);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .filter-btn.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+      box-shadow: 0 4px 12px rgba(45, 90, 66, 0.25);
+    }
+
+    /* ---------------------------------
+       盆栽商品網格 (Product Grid & Cards)
+    ----------------------------------- */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 28px;
+    }
+
+    .product-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+      border-color: #c0d8c9;
+    }
+
+    .product-thumb {
+      position: relative;
+      aspect-ratio: 1 / 1.05;
+      background: #f1f6f2;
+      overflow: hidden;
+    }
+
+    .product-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .product-card:hover .product-thumb img {
+      transform: scale(1.06);
+    }
+
+    .product-tag {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: rgba(27, 56, 43, 0.88);
+      backdrop-filter: blur(4px);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.04em;
+    }
+
+    .quick-view-btn {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      background: rgba(255, 255, 255, 0.95);
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      color: var(--primary-dark);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+    }
+
+    .product-card:hover .quick-view-btn {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .product-info {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .product-category {
+      font-size: 12px;
+      color: var(--primary);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+
+    .product-title {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 6px;
+    }
+
+    .product-specs {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      display: flex;
+      gap: 12px;
+    }
+
+    .product-specs span {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .product-bottom {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 14px;
+      border-top: 1px dashed var(--border-color);
+    }
+
+    .product-price {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    .product-price small {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 400;
+      margin-left: 2px;
+    }
+
+    .add-to-cart {
+      background: var(--mint-bg);
+      color: var(--primary-dark);
+      border: 1px solid var(--border-color);
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .add-to-cart:hover {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    /* ---------------------------------
+       居家佈置靈感指南 (Home Decor Guide)
+    ----------------------------------- */
+    .decor-guide-section {
+      padding: 90px 0;
+      background: linear-gradient(180deg, #f2f7f3 0%, var(--warm-bg) 100%);
+    }
+
+    .guide-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+
+    .guide-tab-btn {
+      padding: 10px 24px;
+      background: #fff;
+      border: 1px solid var(--border-color);
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .guide-tab-btn.active {
+      background: var(--primary-dark);
+      color: #fff;
+      border-color: var(--primary-dark);
+    }
+
+    .guide-display-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: #fff;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-color);
+      min-height: 440px;
+    }
+
+    .guide-image-pane {
+      position: relative;
+      background: #e3ede5;
+    }
+
+    .guide-image-pane img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .guide-content-pane {
+      padding: 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .guide-tag {
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .guide-title {
+      font-family: var(--font-serif);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 16px;
+      line-height: 1.35;
+    }
+
+    .guide-text {
+      color: var(--text-muted);
+      font-size: 15px;
+      line-height: 1.8;
+      margin-bottom: 24px;
+    }
+
+    .guide-tips {
+      list-style: none;
+      margin-bottom: 28px;
+    }
+
+    .guide-tips li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--primary-dark);
+      margin-bottom: 8px;
+    }
+
+    .guide-tips li svg {
+      color: var(--accent-green);
+      flex-shrink: 0;
+    }
+
+    /* ---------------------------------
+       限時促銷橫幅 (Promo CTA Banner)
+    ----------------------------------- */
+    .promo-banner {
+      padding: 70px 0;
+      background: linear-gradient(125deg, var(--primary-dark) 0%, #153225 60%, #204b34 100%);
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .promo-banner::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(103, 162, 125, 0.18), transparent 70%);
+      pointer-events: none;
+    }
+
+    .promo-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      align-items: center;
+      gap: 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .promo-title {
+      font-family: var(--font-serif);
+      font-size: clamp(26px, 3.5vw, 40px);
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 14px;
+    }
+
+    .promo-desc {
+      color: #c9e2d1;
+      font-size: 16px;
+      line-height: 1.7;
+      max-width: 580px;
+    }
+
+    .promo-box {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: var(--radius-md);
+      padding: 28px;
+      text-align: center;
+      backdrop-filter: blur(8px);
+    }
+
+    .promo-code-title {
+      font-size: 13px;
+      color: #b5dac0;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+
+    .promo-code {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      color: #fff;
+      background: rgba(0, 0, 0, 0.25);
+      padding: 8px 18px;
+      border-radius: 8px;
+      display: inline-block;
+      margin-bottom: 16px;
+      border: 1px dashed rgba(255, 255, 255, 0.4);
+    }
+
+    /* ---------------------------------
+       顧客真實佈置回饋 (Reviews)
+    ----------------------------------- */
+    .reviews-section {
+      padding: 90px 0;
+      background: #fff;
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .review-card {
+      background: var(--warm-bg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .stars {
+      color: #e6a23c;
+      font-size: 16px;
+      margin-bottom: 14px;
+    }
+
+    .review-text {
+      font-size: 15px;
+      color: var(--text-main);
+      line-height: 1.7;
+      margin-bottom: 22px;
+      flex-grow: 1;
+    }
+
+    .reviewer {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .reviewer-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--mint-bg);
+      color: var(--primary);
+      font-weight: 700;
+      display: grid;
+      place-items: center;
+      font-size: 15px;
+    }
+
+    .reviewer-info h4 {
       font-size: 14px;
       font-weight: 700;
-      transition: transform .2s ease, box-shadow .2s ease, color .2s ease, background .2s ease;
-    }
-    .button:hover { transform: translateY(-2px); box-shadow: 0 9px 20px rgba(0,0,0,.15); }
-    .button-primary { color: var(--navy); background: var(--sand); }
-    .button-secondary { border-color: rgba(255,255,255,.85); color: #fff; background: transparent; }
-    .button-secondary:hover { color: var(--navy); background: #fff; }
-    .hero-place { margin: 32px 0 0; color: rgba(255,255,255,.58); font-size: 10px; font-weight: 700; letter-spacing: .17em; }
-    .scroll-hint { position: absolute; bottom: 31px; left: max(24px, calc((100% - 1120px) / 2)); display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,.52); font-size: 9px; font-weight: 700; letter-spacing: .16em; }
-    .scroll-hint::before { width: 38px; height: 1px; background: currentColor; content: ""; }
-    .hero-art { position: relative; justify-self: end; width: min(100%, 450px); padding: 21px 21px 25px 0; }
-    .hero-art::before { position: absolute; top: 1px; right: 0; width: 310px; height: 310px; border: 1px solid rgba(255,255,255,.26); border-radius: 50%; content: ""; }
-    .hero-art::after { position: absolute; right: 34px; bottom: -20px; width: 205px; height: 205px; border: 1px solid rgba(117,198,232,.4); border-radius: 50%; content: ""; }
-    .hero-photo { position: relative; z-index: 1; width: 400px; height: 300px; margin-left: auto; object-fit: cover; box-shadow: var(--shadow); }
-    .art-note { position: absolute; z-index: 2; right: -16px; bottom: 15px; display: grid; width: 113px; gap: 1px; padding: 14px 15px; color: #fff; background: rgba(6,39,66,.91); box-shadow: var(--shadow); }
-    .art-note strong { color: var(--sand); font-family: "Playfair Display", serif; font-size: 27px; font-weight: 600; line-height: 1; }
-    .art-note span { font-size: 10px; font-weight: 700; letter-spacing: .08em; }
-    .art-note small { color: rgba(255,255,255,.64); font-size: 9px; line-height: 1.45; }
-
-    /* Story */
-    .story { padding: 118px 0; background: #fff; }
-    .story-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(45px, 8vw, 105px); align-items: center; }
-    .story-visual { position: relative; min-height: 390px; }
-    .story-disc { position: absolute; top: 0; left: 0; display: grid; width: 305px; height: 305px; place-content: center; border: 1px solid var(--sky); border-radius: 50%; color: var(--blue); text-align: center; background: var(--mist); }
-    .story-disc::before, .story-disc::after { position: absolute; border: 1px solid rgba(12,91,149,.2); border-radius: 50%; content: ""; }
-    .story-disc::before { inset: 19px; }
-    .story-disc::after { inset: 42px; }
-    .story-disc b { position: relative; z-index: 1; font-family: "Noto Serif TC", serif; font-size: 28px; letter-spacing: .08em; }
-    .story-disc span { position: relative; z-index: 1; margin-top: 8px; font-size: 10px; font-weight: 700; letter-spacing: .12em; }
-    .story-card { position: absolute; right: 0; bottom: 0; width: 235px; padding: 28px; color: #fff; background: var(--navy); box-shadow: var(--shadow); }
-    .story-card .card-label { display: block; color: var(--sky); font-size: 10px; font-weight: 700; letter-spacing: .17em; }
-    .story-card p { margin: 15px 0 0; font-family: "Noto Serif TC", serif; font-size: 18px; line-height: 1.65; }
-    .story-copy p { max-width: 570px; margin: 21px 0 0; color: var(--muted); }
-    .story-copy p + p { margin-top: 14px; color: var(--ink); font-weight: 500; }
-
-    /* Coffee */
-    .coffee { padding: 114px 0 120px; background: var(--mist); }
-    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 43px; }
-    .section-heading .section-copy { max-width: 310px; margin: 0; font-size: 14px; }
-    .coffee-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 19px; }
-    .coffee-card { position: relative; display: flex; flex-direction: column; min-height: 384px; overflow: hidden; padding: 30px; color: #fff; background: var(--navy); box-shadow: var(--shadow); }
-    .coffee-card:nth-child(2) { background: #106396; }
-    .coffee-card:nth-child(3) { background: #164c68; }
-    .coffee-card::before, .coffee-card::after { position: absolute; border: 1px solid rgba(255,255,255,.18); border-radius: 50%; content: ""; }
-    .coffee-card::before { width: 245px; height: 245px; right: -107px; bottom: -110px; }
-    .coffee-card::after { width: 183px; height: 183px; right: -76px; bottom: -78px; }
-    .coffee-card > * { position: relative; z-index: 1; }
-    .coffee-number { color: var(--sky); font-family: "Playfair Display", serif; font-size: 13px; font-weight: 700; letter-spacing: .1em; }
-    .coffee-origin { margin-top: 37px; color: rgba(255,255,255,.58); font-size: 10px; font-weight: 700; letter-spacing: .15em; }
-    .coffee-name { margin: 9px 0 0; font-family: "Noto Serif TC", serif; font-size: 25px; font-weight: 700; line-height: 1.45; }
-    .coffee-taste { margin: 16px 0 0; color: rgba(255,255,255,.77); font-size: 14px; }
-    .coffee-footer { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: auto; padding-top: 28px; border-top: 1px solid rgba(255,255,255,.2); }
-    .coffee-price { font-family: "Playfair Display", serif; font-size: 14px; font-weight: 600; white-space: nowrap; }
-    .collect-button { padding: 4px 0; border: 0; color: #fff; background: transparent; font-size: 13px; font-weight: 700; white-space: nowrap; transition: color .2s ease; }
-    .collect-button:hover { color: var(--sand); }
-
-    /* Brew */
-    .brew { padding: 118px 0; background: #fff; }
-    .brew-grid { display: grid; grid-template-columns: .93fr 1.07fr; gap: clamp(45px, 8vw, 95px); align-items: center; }
-    .video-frame { position: relative; overflow: hidden; padding: 43px 0 30px; background: linear-gradient(90deg, var(--mist) 0 58%, #f5f9f9 58%); }
-    .video-frame::before { position: absolute; top: 43px; left: 0; width: 86px; height: 1px; background: var(--sky); box-shadow: 0 10px 0 var(--sky), 0 20px 0 var(--sky); content: ""; }
-    .video-frame iframe { position: relative; z-index: 1; display: block; width: 560px; max-width: 100%; height: auto; aspect-ratio: 16 / 9; margin: 0 auto; border: 0; background: var(--navy); box-shadow: var(--shadow); }
-    .pour-rings, .pour-rings::before, .pour-rings::after { position: absolute; border: 1px solid rgba(12,91,149,.36); border-radius: 50%; content: ""; }
-    .pour-rings { top: 85px; left: 50%; width: 192px; height: 192px; transform: translateX(-50%); }
-    .pour-rings::before { inset: 22px; }
-    .pour-rings::after { inset: 47px; }
-    .dripper { position: absolute; z-index: 1; top: 118px; left: 50%; width: 128px; height: 164px; transform: translateX(-50%); }
-    .dripper-top { width: 128px; height: 60px; border: 2px solid var(--blue); clip-path: polygon(0 0, 100% 0, 75% 100%, 25% 100%); background: rgba(255,255,255,.8); }
-    .dripper-top::after { position: absolute; top: 9px; left: 18px; width: 92px; height: 31px; border: 1px solid rgba(12,91,149,.55); border-radius: 50%; content: ""; }
-    .dripper-body { position: absolute; top: 58px; left: 32px; width: 64px; height: 80px; border: 2px solid var(--blue); border-top: 0; clip-path: polygon(12% 0, 88% 0, 100% 100%, 0 100%); background: rgba(255,255,255,.42); }
-    .dripper-base { position: absolute; bottom: 0; left: 15px; width: 98px; height: 21px; border: 2px solid var(--blue); border-radius: 50%; background: #fff; }
-    .brew-data { position: absolute; right: 25px; bottom: 22px; display: grid; justify-items: end; color: var(--blue); font-family: "Playfair Display", serif; font-size: 13px; font-weight: 700; letter-spacing: .05em; line-height: 1.5; }
-    .brew-data small { color: var(--muted); font-family: "Noto Sans TC", sans-serif; font-size: 10px; letter-spacing: .12em; }
-    .brew-copy .section-copy { margin-bottom: 28px; }
-    .brew-steps { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
-    .brew-steps li { display: grid; grid-template-columns: 55px 1fr; gap: 12px; padding: 19px 0; border-bottom: 1px solid var(--line); }
-    .step-number { color: var(--blue); font-family: "Playfair Display", serif; font-size: 24px; font-weight: 700; line-height: 1.2; }
-    .step-content strong { display: block; font-size: 15px; }
-    .step-content p { margin: 4px 0 0; color: var(--muted); font-size: 14px; }
-
-    /* Subscribe and footer */
-    .visit { position: relative; overflow: hidden; padding: 110px 0; color: #fff; text-align: center; background: var(--navy); }
-    .visit::before, .visit::after { position: absolute; width: 370px; height: 370px; border: 1px solid rgba(117,198,232,.25); border-radius: 50%; content: ""; }
-    .visit::before { top: -233px; left: -120px; }
-    .visit::after { right: -136px; bottom: -270px; }
-    .visit-inner { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
-    .visit .eyebrow { justify-content: center; color: var(--sky); }
-    .visit-title { margin: 0; font-family: "Noto Serif TC", serif; font-size: clamp(30px, 4.5vw, 47px); font-weight: 900; letter-spacing: .045em; line-height: 1.3; }
-    .visit-copy { max-width: 490px; margin: 20px auto 0; color: rgba(255,255,255,.72); }
-    .subscribe-form { display: flex; max-width: 555px; margin: 34px auto 0; padding: 5px; border: 1px solid rgba(255,255,255,.45); }
-    .subscribe-form input { min-width: 0; flex: 1; padding: 12px 15px; border: 0; outline: 0; color: #fff; background: transparent; }
-    .subscribe-form input::placeholder { color: rgba(255,255,255,.54); }
-    .subscribe-form .button { flex: 0 0 auto; min-height: 48px; border: 0; }
-    .site-footer { padding: 65px 0 23px; color: rgba(255,255,255,.63); background: #031c31; }
-    .footer-grid { display: grid; grid-template-columns: 1.5fr .8fr 1fr; gap: 60px; }
-    .footer-brand .brand { color: #fff; }
-    .footer-brand p { max-width: 300px; margin: 17px 0 0; font-size: 13px; line-height: 1.8; }
-    .footer-title { margin: 2px 0 13px; color: var(--sky); font-size: 11px; font-weight: 700; letter-spacing: .16em; }
-    .footer-links { display: grid; gap: 8px; list-style: none; margin: 0; padding: 0; font-size: 13px; }
-    .footer-links a:hover { color: #fff; }
-    .footer-bottom { display: flex; justify-content: space-between; gap: 20px; margin-top: 55px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.13); font-size: 9px; font-weight: 700; letter-spacing: .1em; }
-
-    /* Motion */
-    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .65s ease, transform .65s ease; }
-    .reveal.visible { opacity: 1; transform: none; }
-    .toast { position: fixed; z-index: 30; right: 22px; bottom: 22px; max-width: min(360px, calc(100% - 44px)); padding: 14px 18px; border-left: 3px solid var(--sand); color: #fff; background: var(--navy); box-shadow: var(--shadow); opacity: 0; pointer-events: none; transform: translateY(12px); transition: opacity .25s ease, transform .25s ease; }
-    .toast.show { opacity: 1; transform: translateY(0); }
-
-    @media (max-width: 820px) {
-      .nav-bar { position: relative; }
-      .menu-toggle { display: block; }
-      .nav-links { position: absolute; top: 78px; left: -24px; right: -24px; display: grid; gap: 0; max-height: 0; overflow: hidden; padding: 0 24px; background: #05233c; transition: max-height .3s ease, padding .3s ease; }
-      .nav-links.open { max-height: 300px; padding-top: 11px; padding-bottom: 16px; }
-      .nav-links a { display: block; padding: 10px 0; }
-      .nav-links .nav-cta { display: inline-block; margin-top: 6px; padding: 8px 12px; }
-      .hero { min-height: 710px; }
-      .hero-inner { grid-template-columns: 1fr; gap: 18px; padding-top: 118px; }
-      .hero-art { width: min(100%, 510px); margin: 0 auto; padding-top: 0; justify-self: center; transform: scale(.72); transform-origin: top center; height: 245px; }
-      .scroll-hint { display: none; }
-      .story-grid, .brew-grid { grid-template-columns: 1fr; }
-      .story-visual { max-width: 450px; width: 100%; margin: 0 auto; }
-      .coffee-grid { grid-template-columns: repeat(2, 1fr); }
-      .coffee-card:nth-child(3) { grid-column: span 2; }
-      .footer-grid { grid-template-columns: 1fr 1fr; gap: 38px; }
-      .footer-brand { grid-column: span 2; }
+      color: var(--primary-dark);
     }
 
-    @media (max-width: 560px) {
-      .wrap, .hero-inner { width: calc(100% - 34px); }
-      .brand-name { font-size: 12px; }
-      .hero { min-height: 680px; }
-      .hero-inner { padding-top: 109px; padding-bottom: 37px; }
-      .hero-title { font-size: 40px; }
-      .hero-lede { margin-top: 19px; font-size: 14px; line-height: 1.85; }
-      .hero-actions { margin-top: 24px; }
-      .hero-place { margin-top: 22px; }
-      .hero-art { height: 203px; transform: scale(.62); }
-      .art-note { display: none; }
-      .story, .coffee, .brew, .visit { padding-top: 76px; padding-bottom: 76px; }
-      .story-visual { min-height: 330px; }
-      .story-disc { width: 245px; height: 245px; }
-      .story-disc b { font-size: 23px; }
-      .story-card { width: 185px; padding: 21px; }
-      .story-card p { font-size: 15px; }
-      .section-heading { display: block; margin-bottom: 31px; }
-      .section-heading .section-copy { margin-top: 15px; }
-      .coffee-grid { grid-template-columns: 1fr; }
-      .coffee-card, .coffee-card:nth-child(3) { grid-column: auto; min-height: 330px; }
-      .video-frame { padding: 36px 0 21px; min-height: 310px; }
-      .video-frame::before { top: 36px; width: 62px; }
-      .subscribe-form { display: grid; gap: 7px; padding: 0; border: 0; }
-      .subscribe-form input { width: 100%; min-height: 51px; border: 1px solid rgba(255,255,255,.45); }
-      .subscribe-form .button { width: 100%; }
-      .footer-grid { grid-template-columns: 1fr; gap: 31px; }
-      .footer-brand { grid-column: auto; }
-      .footer-bottom { display: grid; gap: 9px; margin-top: 39px; line-height: 1.6; }
+    .reviewer-info span {
+      font-size: 12px;
+      color: var(--text-muted);
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
-      .reveal { opacity: 1; transform: none; }
+    /* ---------------------------------
+       常見問題 (FAQ)
+    ----------------------------------- */
+    .faq-section {
+      padding: 80px 0;
+      background: var(--warm-bg);
+    }
+
+    .faq-wrap {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      background: #fff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      margin-bottom: 14px;
+      overflow: hidden;
+      transition: all 0.25s ease;
+    }
+
+    .faq-item.open {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .faq-question {
+      width: 100%;
+      padding: 18px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: none;
+      border: none;
+      text-align: left;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      cursor: pointer;
+    }
+
+    .faq-icon {
+      font-size: 20px;
+      transition: transform 0.3s ease;
+      color: var(--primary);
+    }
+
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      background: var(--warm-bg);
+      padding: 0 24px;
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 180px;
+      padding: 16px 24px 22px;
+    }
+
+    /* ---------------------------------
+       購物車側邊欄 (Cart Drawer Modal)
+    ----------------------------------- */
+    .cart-drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .cart-drawer-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: min(420px, 90vw);
+      background: #fff;
+      z-index: 1001;
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      box-shadow: -10px 0 30px rgba(0,0,0,0.15);
+    }
+
+    .cart-drawer-overlay.active .cart-drawer {
+      transform: translateX(0);
+    }
+
+    .cart-header {
+      padding: 22px 24px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cart-header h3 {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      color: var(--primary-dark);
+    }
+
+    .close-drawer {
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .cart-body {
+      padding: 24px;
+      overflow-y: auto;
+      flex-grow: 1;
+    }
+
+    .empty-cart-msg {
+      text-align: center;
+      padding: 50px 0;
+      color: var(--text-muted);
+    }
+
+    .empty-cart-msg svg {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 12px;
+      color: #b0c7b8;
+    }
+
+    .cart-item {
+      display: flex;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border-color);
+      align-items: center;
+    }
+
+    .cart-item-img {
+      width: 64px;
+      height: 64px;
+      border-radius: var(--radius-sm);
+      object-fit: cover;
+      background: #f0f0f0;
+      flex-shrink: 0;
+    }
+
+    .cart-item-info {
+      flex-grow: 1;
+    }
+
+    .cart-item-info h4 {
+      font-size: 15px;
+      color: var(--primary-dark);
+      margin-bottom: 4px;
+    }
+
+    .cart-item-info p {
+      font-size: 13px;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .cart-item-remove {
+      background: none;
+      border: none;
+      color: #b33939;
+      cursor: pointer;
+      font-size: 13px;
+      padding: 4px;
+    }
+
+    .cart-footer {
+      padding: 24px;
+      border-top: 1px solid var(--border-color);
+      background: var(--warm-bg);
+    }
+
+    .cart-total-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 18px;
+    }
+
+    .cart-total-price {
+      font-size: 22px;
+      color: var(--primary);
+    }
+
+    /* ---------------------------------
+       商品快速預覽彈窗 (Quick View Modal)
+    ----------------------------------- */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(4px);
+      z-index: 2000;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-box {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      max-width: 780px;
+      width: 100%;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.06);
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+      display: grid;
+      place-items: center;
+      z-index: 10;
+    }
+
+    .modal-image {
+      background: #f2f7f3;
+      min-height: 360px;
+    }
+
+    .modal-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .modal-details {
+      padding: 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* ---------------------------------
+       頁尾 (Footer)
+    ----------------------------------- */
+    .site-footer {
+      background: var(--primary-dark);
+      color: #d1e5d7;
+      padding: 70px 0 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr 1.2fr;
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+
+    .footer-brand h2 {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .footer-brand p {
+      font-size: 14px;
+      line-height: 1.8;
+      color: #a8c7b2;
+      max-width: 300px;
+    }
+
+    .footer-col h3 {
+      font-size: 15px;
+      color: #fff;
+      margin-bottom: 18px;
+      letter-spacing: 0.05em;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links a {
+      color: #a8c7b2;
+      font-size: 14px;
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+      padding-left: 4px;
+    }
+
+    .footer-newsletter p {
+      font-size: 13px;
+      color: #a8c7b2;
+      margin-bottom: 14px;
+      line-height: 1.6;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 8px;
+    }
+
+    .newsletter-form input {
+      padding: 10px 14px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      font-size: 13px;
+      outline: none;
+      flex-grow: 1;
+    }
+
+    .newsletter-form input::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .newsletter-form button {
+      padding: 10px 18px;
+      background: var(--accent-green);
+      color: var(--primary-dark);
+      font-weight: 700;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .newsletter-form button:hover {
+      background: #7ec498;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: #8dae97;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* 提示訊息 (Toast) */
+    .toast-msg {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(30px);
+      background: var(--primary-dark);
+      color: #fff;
+      padding: 12px 26px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      z-index: 3000;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .toast-msg.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    /* ---------------------------------
+       響應式設計 (RWD Breakpoints)
+    ----------------------------------- */
+    @media (max-width: 992px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .values-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .guide-display-card {
+        grid-template-columns: 1fr;
+      }
+      .guide-content-pane {
+        padding: 30px;
+      }
+      .promo-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .promo-desc {
+        margin: 0 auto;
+      }
+      .reviews-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .modal-box {
+        grid-template-columns: 1fr;
+      }
+      .modal-image {
+        min-height: 220px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu {
+        position: fixed;
+        top: 76px;
+        left: 0;
+        right: 0;
+        background: #ffffff;
+        flex-direction: column;
+        padding: 30px 20px;
+        gap: 20px;
+        border-bottom: 1px solid var(--border-color);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        transform: translateY(-150%);
+        transition: transform 0.3s ease;
+      }
+      .nav-menu.open {
+        transform: translateY(0);
+      }
+      .mobile-toggle {
+        display: block;
+      }
+      .hero-features {
+        grid-template-columns: 1fr;
+      }
+      .values-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
+
+  <!-- 頂部宣告列 -->
+  <aside class="announcement-bar">
+    <span>新居入厝專案</span>
+    全館綠意盆栽滿 $1,500 即享免運到府，結帳輸入【GREENHOME】現折 $150！
+  </aside>
+
+  <!-- 網站頂部導覽列 -->
   <header class="site-header" id="top">
-    <nav class="nav-bar wrap" aria-label="主要導覽">
-      <a class="brand" href="#top" aria-label="回到藍天咖啡首頁">
-        <span class="brand-mark" aria-hidden="true">B</span>
-        <span class="brand-name">藍天咖啡 <small>BLUE SKY COFFEE</small></span>
+    <div class="container nav-wrap">
+      <a href="#top" class="brand-logo" aria-label="植得期待 首頁">
+        <div class="logo-icon">
+          <!-- 綠意樹苗 SVG 圖標 -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22v-9"/>
+            <path d="M12 13c0-4.5-3.5-7-7-7 0 4 2.5 7 7 7z"/>
+            <path d="M12 13c0-4.5 3.5-7 7-7 0 4-2.5 7-7 7z"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1>植得期待</h1>
+          <span>EXPECT PLANT · BOTANIC LIVING</span>
+        </div>
       </a>
-      <button class="menu-toggle" type="button" aria-controls="navLinks" aria-expanded="false" aria-label="開啟導覽選單">☰</button>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#story">我們的故事</a></li>
-        <li><a href="#coffee">本季選豆</a></li>
-        <li><a href="#brew">沖煮日常</a></li>
-        <li><a class="nav-cta" href="#visit">訂閱風味通信</a></li>
-      </ul>
-    </nav>
+
+      <!-- 電腦版導覽選單 -->
+      <nav aria-label="主選單">
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="#about" class="nav-link">品牌理念</a></li>
+          <li><a href="#catalog" class="nav-link">精選盆栽</a></li>
+          <li><a href="#guide" class="nav-link">居家佈置靈感</a></li>
+          <li><a href="#reviews" class="nav-link">植友推薦</a></li>
+          <li><a href="#faq" class="nav-link">常見問題</a></li>
+        </ul>
+      </nav>
+
+      <!-- 右側動作按鈕 -->
+      <div class="nav-actions">
+        <button class="cart-btn" id="openCartBtn" aria-label="開啟購物車">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"/>
+            <circle cx="20" cy="21" r="1"/>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+          </svg>
+          <span>購物車</span>
+          <span class="cart-badge" id="cartCount">0</span>
+        </button>
+
+        <button class="mobile-toggle" id="mobileToggle" aria-label="展開導覽選單">☰</button>
+      </div>
+    </div>
   </header>
 
   <main>
-    <section class="hero" aria-labelledby="heroTitle">
-      <div class="hero-inner">
-        <div class="hero-content reveal">
-          <p class="eyebrow">HAND BREWED · SLOWLY ROASTED</p>
-          <h1 class="hero-title" id="heroTitle">讓風味，在<span class="sky-text">藍天</span>下<br>慢慢抵達。</h1>
-          <p class="hero-lede">藍天咖啡為喜歡手沖的您，挑選值得細品的單一產區咖啡豆。從第一縷花香，到最後一口回甘，每一杯都有屬於自己的晴朗天氣。</p>
+    <!-- 英雄形象區塊 (Hero Section) -->
+    <section class="hero-section">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+            2026 居家軟裝首選・自然生活綠意美學
+          </div>
+          <h2 class="hero-title">
+            遇見心動綠意，<br>
+            讓家<span class="highlight">「植」得期待</span>。
+          </h2>
+          <p class="hero-desc">
+            我們為熱愛生活的你挑選健康好養的各式盆栽。從客廳落地巨型觀葉、書桌療癒小品，到窗台垂墜綠瀑，讓自然的深淺綠意，成為家中溫暖舒適的風景。
+          </p>
           <div class="hero-actions">
-            <a class="button button-primary" href="#coffee">探索本季咖啡豆 →</a>
-            <a class="button button-secondary" href="#story">認識藍天</a>
+            <a href="#catalog" class="btn btn-primary">
+              探索本季盆栽
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#guide" class="btn btn-secondary">家庭佈置靈感</a>
           </div>
-          <p class="hero-place">TAIPEI · TAIWAN · EST. 2025</p>
-        </div>
-        <div class="hero-art reveal" aria-label="窗邊手沖咖啡與山景">
-          <img class="hero-photo" src="images/hero.png" width="400" height="300" alt="窗邊的手沖咖啡與遠方山景">
-          <div class="art-note" aria-hidden="true"><strong>92°C</strong><span>理想水溫</span><small>細細喚醒香氣</small></div>
-        </div>
-      </div>
-      <span class="scroll-hint" aria-hidden="true">SCROLL TO DISCOVER</span>
-    </section>
 
-    <section class="story" id="story" aria-labelledby="storyTitle">
-      <div class="wrap story-grid">
-        <div class="story-visual reveal" aria-hidden="true">
-          <div class="story-disc"><b>慢一點，<br>更清楚。</b><span>LET THE FLAVOUR SPEAK</span></div>
-          <div class="story-card"><span class="card-label">BLUE SKY NOTE</span><p>一杯好咖啡，從來不是匆忙完成的事。</p></div>
-        </div>
-        <div class="story-copy reveal">
-          <p class="eyebrow">OUR PHILOSOPHY</p>
-          <h2 class="section-title" id="storyTitle">在一杯之間，看見產地的<span class="blue-word">晴朗</span>。</h2>
-          <p>我們相信，精品咖啡的美好不該被複雜掩蓋。以小批次烘焙留住豆子的個性，再用穩定、誠實的手沖，讓風土與時間在杯中變得清晰。</p>
-          <p>給懂得放慢腳步的人，也給每一個想重新認識咖啡的人。</p>
-          <a class="text-link" href="#brew">看看我們如何沖煮 →</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="coffee" id="coffee" aria-labelledby="coffeeTitle">
-      <div class="wrap">
-        <div class="section-heading reveal">
-          <div>
-            <p class="eyebrow">SEASONAL SELECTION</p>
-            <h2 class="section-title" id="coffeeTitle">今天，想喝哪一片<span class="blue-word">藍天</span>？</h2>
+          <div class="hero-features">
+            <div class="hero-feature-item">
+              <div class="feature-icon-bubble">🪴</div>
+              <div class="feature-text">
+                <strong>各式各樣盆栽</strong>
+                <span>大中小型風格齊全</span>
+              </div>
+            </div>
+            <div class="hero-feature-item">
+              <div class="feature-icon-bubble">🚚</div>
+              <div class="feature-text">
+                <strong>安心植株防撞運送</strong>
+                <span>枯損包換到府服務</span>
+              </div>
+            </div>
+            <div class="hero-feature-item">
+              <div class="feature-icon-bubble">✨</div>
+              <div class="feature-text">
+                <strong>附贈手作美感陶盆</strong>
+                <span>拆箱直接就位擺設</span>
+              </div>
+            </div>
           </div>
-          <p class="section-copy">三款當季單品，為不同的晨光、午後與靜夜而選。</p>
         </div>
-        <div class="coffee-grid">
-          <article class="coffee-card reveal">
-            <span class="coffee-number">01 / BRIGHT</span>
-            <span class="coffee-origin">ETHIOPIA · YIRGACHEFFE</span>
-            <h3 class="coffee-name">衣索比亞・<br>耶加雪菲</h3>
-            <p class="coffee-taste">白花、佛手柑、蜂蜜</p>
-            <div class="coffee-footer"><span class="coffee-price">NT$ 520 / 200g</span><button class="collect-button" type="button" data-coffee="衣索比亞・耶加雪菲">加入收藏 ＋</button></div>
-          </article>
-          <article class="coffee-card reveal">
-            <span class="coffee-number">02 / JUICY</span>
-            <span class="coffee-origin">KENYA · KIRINYAGA</span>
-            <h3 class="coffee-name">肯亞・<br>祈安布</h3>
-            <p class="coffee-taste">黑醋栗、洛神、葡萄柚</p>
-            <div class="coffee-footer"><span class="coffee-price">NT$ 580 / 200g</span><button class="collect-button" type="button" data-coffee="肯亞・祈安布">加入收藏 ＋</button></div>
-          </article>
-          <article class="coffee-card reveal">
-            <span class="coffee-number">03 / ROUND</span>
-            <span class="coffee-origin">COLOMBIA · HUILA</span>
-            <h3 class="coffee-name">哥倫比亞・<br>慧蘭</h3>
-            <p class="coffee-taste">黃桃、焦糖、可可尾韻</p>
-            <div class="coffee-footer"><span class="coffee-price">NT$ 460 / 200g</span><button class="collect-button" type="button" data-coffee="哥倫比亞・慧蘭">加入收藏 ＋</button></div>
-          </article>
+
+        <div class="hero-image-wrap">
+          <div class="hero-image-card">
+            <!-- 居家空間與大型盆栽高質感影像 -->
+            <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1000&q=80" 
+                 alt="陽光灑落的客廳佈置著優雅綠色盆栽" 
+                 loading="eager"
+                 onerror="this.src='https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=1000&q=80'">
+          </div>
+
+          <div class="floating-decor-card decor-card-1">
+            <div class="avatar-stack">
+              <span>98%</span>
+              <span>好評</span>
+            </div>
+            <div>
+              <strong style="font-size: 13px; display:block; color:var(--primary-dark)">已陪伴 3,200+ 個家</strong>
+              <span style="font-size: 11px; color:var(--text-muted)">打造無壓森林感角落</span>
+            </div>
+          </div>
+
+          <div class="floating-decor-card decor-card-2">
+            <strong style="font-size: 20px; color: var(--primary); font-family: var(--font-serif);">100%</strong>
+            <span style="font-size: 12px; display:block; color: var(--text-muted);">嚴選健康根系健檢</span>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="brew" id="brew" aria-labelledby="brewTitle">
-      <div class="wrap brew-grid">
-        <div class="video-frame reveal">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/hMOYa4EBntI" title="藍天咖啡沖煮影片" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        </div>
-        <div class="brew-copy reveal">
-          <p class="eyebrow">A QUIET RITUAL</p>
-          <h2 class="section-title" id="brewTitle">把時間交給水，讓咖啡說<span class="blue-word">自己的話</span>。</h2>
-          <p class="section-copy">不需要繁複儀式，只要三個安靜的步驟。每一個參數，都是為了讓你更靠近豆子原本的樣子。</p>
-          <ol class="brew-steps">
-            <li><span class="step-number">01</span><div class="step-content"><strong>研磨，先聞見期待</strong><p>15g 中細研磨，讓香氣從指尖開始展開。</p></div></li>
-            <li><span class="step-number">02</span><div class="step-content"><strong>悶蒸，等待第一個呼吸</strong><p>以 92°C 熱水浸潤 30 秒，喚醒甜感與層次。</p></div></li>
-            <li><span class="step-number">03</span><div class="step-content"><strong>注水，保持自己的節奏</strong><p>穩定畫圈，讓 240ml 的清澈在 2 分 45 秒完成。</p></div></li>
-          </ol>
+    <!-- 品牌特色與服務承諾 (Why Choose Us) -->
+    <section class="values-section" id="about">
+      <div class="container">
+        <div class="values-grid">
+          <div class="value-box">
+            <div class="value-icon">🌿</div>
+            <div class="value-content">
+              <h3>精心適應性馴化</h3>
+              <p>所有植株在出圃前均經室內環境馴化，新手接手也不易黃葉落葉。</p>
+            </div>
+          </div>
+
+          <div class="value-box">
+            <div class="value-icon">🏺</div>
+            <div class="value-content">
+              <h3>專屬美感盆器搭配</h3>
+              <p>選配透氣泥炭土與日韓磨砂質感陶盆，無需再費心找盆換土。</p>
+            </div>
+          </div>
+
+          <div class="value-box">
+            <div class="value-icon">📱</div>
+            <div class="value-content">
+              <h3>終身植物養護諮詢</h3>
+              <p>隨附品種專用照顧卡，加入官方客服拍照立即為您解答疑難雜症。</p>
+            </div>
+          </div>
+
+          <div class="value-box">
+            <div class="value-icon">📦</div>
+            <div class="value-content">
+              <h3>防震客製綠意包裝</h3>
+              <p>多層固根充氣保溫箱包裝，開箱時如同親自從花市捧回家一般鮮活。</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="visit" id="visit" aria-labelledby="visitTitle">
-      <div class="wrap visit-inner reveal">
-        <p class="eyebrow">THE BLUE SKY LETTER</p>
-        <h2 class="visit-title" id="visitTitle">把下一杯好咖啡，寄到你的日常裡。</h2>
-        <p class="visit-copy">每月一封風味通信，分享新豆、沖煮靈感與只給會員的小小驚喜。</p>
-        <form class="subscribe-form" id="subscribeForm">
-          <input type="email" aria-label="電子郵件地址" placeholder="輸入你的電子郵件地址" required>
-          <button class="button button-primary" type="submit">訂閱風味通信</button>
-        </form>
+    <!-- 熱門盆栽選品庫 (Product Catalog & Filter) -->
+    <section class="catalog-section" id="catalog">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-sub">Seasonal Collection</span>
+          <h2 class="section-title">熱門盆栽推薦・尋找命定綠意</h2>
+          <p class="section-desc">
+            依照不同居家採光、房間機能與空間尺度，挑選最契合的生活綠伴。
+          </p>
+        </div>
+
+        <!-- 分類按鈕列 -->
+        <div class="filter-bar">
+          <button class="filter-btn active" data-filter="all">全部盆栽 (8)</button>
+          <button class="filter-btn" data-filter="living">客廳大型景觀</button>
+          <button class="filter-btn" data-filter="desk">書桌療癒小品</button>
+          <button class="filter-btn" data-filter="hanging">窗台飄逸垂吊</button>
+          <button class="filter-btn" data-filter="easy">新手好照顧耐陰</button>
+        </div>
+
+        <!-- 盆栽商品列表 -->
+        <div class="products-grid" id="productGrid">
+          
+          <!-- 商品 1 -->
+          <article class="product-card" data-category="living" data-id="1">
+            <div class="product-thumb">
+              <span class="product-tag">人氣首選</span>
+              <img src="https://images.unsplash.com/photo-1614594975525-e45190c55d0b?auto=format&fit=crop&w=700&q=80" alt="龜背芋盆栽" loading="lazy">
+              <button class="quick-view-btn" title="查看細節" onclick="openProductModal(1)">👁️</button>
+            </div>
+            <div class="product-info">
+              <span class="product-category">客廳大型 / 耐陰耐旱</span>
+              <h3 class="product-title">白脈龜背芋 (Monstera)</h3>
+              <div class="product-specs">
+                <span>☀️ 散射光佳</span>
+                <span>💧 表面乾再澆</span>
+              </div>
+              <div class="product-bottom">
+                <div class="product-price">NT$ 980 <small>含質感磨砂陶盆</small></div>
+                <button class="add-to-cart" onclick="addToCart('白脈龜背芋', 980, 'https://images.unsplash.com/photo-1614594975525-e45190c55d0b?auto=format&fit=crop&w=300&q=80')">
+                  ＋ 加入購物車
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 商品 2 -->
+          <article class="product-card" data-category="living" data-id="2">
+            <div class="product-thumb">
+              <span class="product-tag">北歐風格</span>
+              <img src="https://images.unsplash.com/photo-1597055181300-e3633a917c9c?auto=format&fit=crop&w=700&q=80" alt="琴葉榕" loading="lazy">
+              <button class="quick-view-btn" title="查看細節" onclick="openProductModal(2)">👁️</button>
+            </div>
+            <div class="product-info">
+              <span class="product-category">客廳大型 / 空間焦點</span>
+              <h3 class="product-title">琴葉榕 (Ficus Lyrata)</h3>
+              <div class="product-specs">
+                <span>☀️ 明亮散射光</span>
+                <span>💧 每週透水一次</span>
+              </div>
+              <div class="product-bottom">
+                <div class="product-price">NT$ 1,480 <small>含編織籃盆套</small></div>
+                <button class="add-to-cart" onclick="addToCart('琴葉榕', 1480, 'https://images.unsplash.com/photo-1597055181300-e3633a917c9c?auto=format&fit=crop&w=300&q=80')">
+                  ＋ 加入購物車
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 商品 3 -->
+          <article class="product-card" data-category="desk easy" data-id="3">
+            <div class="product-thumb">
+              <span class="product-tag">空氣淨化榜首</span>
+              <img src="https://images.unsplash.com/photo-1599598425947-320d4334336c?auto=format&fit=crop&w=700&q=80" alt="虎尾蘭盆栽" loading="lazy">
+              <button class="quick-view-btn" title="查看細節" onclick="openProductModal(3)">👁️</button>
+            </div>
+            <div class="product-info">
+              <span class="product-category">書桌臥室 / 超耐陰</span>
+              <h3 class="product-title">金邊虎尾蘭 (Sansevieria)</h3>
+              <div class="product-specs">
+                <span>☀️ 耐陰適應性強</span>
+                <span>💧 兩週澆一次</span>
+              </div>
+              <div class="product-bottom">
+                <div class="product-price">NT$ 480 <small>含幾何白瓷盆</small></div>
+                <button class="add-to-cart" onclick="addToCart('金邊虎尾蘭', 480, 'https://images.unsplash.com/photo-1599598425947-320d4334336c?auto=format&fit=crop&w=300&q=80')">
+                  ＋ 加入購物車
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 商品 4 -->
+          <article class="product-card" data-category="hanging" data-id="4">
+            <div class="product-thumb">
+              <span class="product-tag">飄逸垂墜</span>
+              <img src="https://images.unsplash.com/photo-1512428813834-c702c7702b78?auto=format&fit=crop&w=700&q=80" alt="黃金葛垂吊" loading="lazy">
+              <button class="quick-view-btn" title="查看細節" onclick="openProductModal(4)">👁️</button>
+            </div>
+            <div class="product-info">
+              <span class="product-category">窗台垂吊 / 陽台綠幕</span>
+              <h3 class="product-title">銀斑葛吊盆 (Satin Pothos)</h3>
+              <div class="product-specs">
+                <span>☀️ 半日照通風</span>
+                <span>💧 土乾澆透</span>
+              </div>
+              <div class="product-bottom">
+                <div class="product-price">NT$ 520 <small>含棉麻編織掛繩</small></div>
+                <button class="add-to-cart" onclick="addToCart('銀斑葛吊盆', 520, 'https://images.unsplash.com/photo-1512428813834-c702c7702b78?auto=format&fit=crop&w=300&q=80')">
+                  ＋ 加入購物車
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 商品 5 -->
+          <article class="product-card" data-category="desk" data-id="5">
+            <div class="product-thumb">
+              <span class="product-tag">侘寂美學</span>
+              <img src="https://images.unsplash.com/photo-1545241047-6083a3684587?auto=format&fit=crop&w=700&q=80" alt="青蘋果竹芋" loading="lazy">
+              <button class="quick-view-btn" title="查看細節" onclick="openProductModal(5)">👁️</button>
+            </div>
+            <div class="product-info">
+              <span class="product-category">書桌療癒 / 斑紋葉藝</span>
+              <h3 class="product-title">青蘋果竹芋 (Calathea)</h3>
+              <div class="product-specs">
+                <span>☀️ 避開直射烈陽</span>
+                <span>💧 保持微潤濕度</span>
+              </div>
+              <div class="product-bottom">
+                <div class="product-price">NT$ 690 <small>含手作粗陶盆</small></div>
+                <button class="add-to-cart" onclick="addToCart('青蘋果竹芋', 690, 'https://images.unsplash.com/photo-1545241047-6083a3684587?auto=format&fit=crop&w=300&q=80')">
+                  ＋ 加入購物車
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 商品 6 -->
+          <article class="product-card" data-category="desk easy" data-id="6">
+            <div class="product-thumb">
+              <span class="product-tag">日系可愛</span>
+              <img src="https://images.unsplash.com/photo-1509423350716-97f9360b4e09?auto=format&fit=crop&w=700&q=80" alt="鏡面草盆栽" loading="lazy">
+              <button class="quick-view-btn" title="查看細節" onclick="openProductModal(6)">👁️</button>
+            </div>
+            <div class="product-info">
+              <span class="product-category">桌上小品 / 圓滿招財</span>
+              <h3 class="product-title">圓葉鏡面草 (Pilea)</h3>
+              <div class="product-specs">
+                <span>☀️ 窗邊柔和明亮</span>
+                <span>💧 表土微乾澆水</span>
+              </div>
+              <div class="product-bottom">
+                <div class="product-price">NT$ 420 <small>含暖灰水泥盆</small></div>
+                <button class="add-to-cart" onclick="addToCart('圓葉鏡面草', 420, 'https://images.unsplash.com/photo-1509423350716-97f9360b4e09?auto=format&fit=crop&w=300&q=80')">
+                  ＋ 加入購物車
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 商品 7 -->
+          <article class="product-card" data-category="living easy" data-id="7">
+            <div class="product-thumb">
+              <span class="product-tag">大器沈穩</span>
+              <img src="https://images.unsplash.com/photo-1598880940371-c756e015fea1?auto=format&fit=crop&w=700&q=80" alt="天堂鳥盆栽" loading="lazy">
+              <button class="quick-view-btn" title="查看細節" onclick="openProductModal(7)">👁️</button>
+            </div>
+            <div class="product-info">
+              <span class="product-category">客廳玄關 / 熱帶南洋風</span>
+              <h3 class="product-title">白鳥蕉天堂鳥 (Strelitzia)</h3>
+              <div class="product-specs">
+                <span>☀️ 充足光線更旺</span>
+                <span>💧 土乾即澆透</span>
+              </div>
+              <div class="product-bottom">
+                <div class="product-price">NT$ 1,680 <small>含高磅數落地陶盆</small></div>
+                <button class="add-to-cart" onclick="addToCart('白鳥蕉天堂鳥', 1680, 'https://images.unsplash.com/photo-1598880940371-c756e015fea1?auto=format&fit=crop&w=300&q=80')">
+                  ＋ 加入購物車
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 商品 8 -->
+          <article class="product-card" data-category="hanging" data-id="8">
+            <div class="product-thumb">
+              <span class="product-tag">文青最愛</span>
+              <img src="https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?auto=format&fit=crop&w=700&q=80" alt="多肉植物小品" loading="lazy">
+              <button class="quick-view-btn" title="查看細節" onclick="openProductModal(8)">👁️</button>
+            </div>
+            <div class="product-info">
+              <span class="product-category">窗台吊掛 / 浪漫心形</span>
+              <h3 class="product-title">愛之蔓錦 (String of Hearts)</h3>
+              <div class="product-specs">
+                <span>☀️ 喜通風半日照</span>
+                <span>💧 耐旱少澆防爛根</span>
+              </div>
+              <div class="product-bottom">
+                <div class="product-price">NT$ 560 <small>含吊掛式陶盆</small></div>
+                <button class="add-to-cart" onclick="addToCart('愛之蔓錦', 560, 'https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?auto=format&fit=crop&w=300&q=80')">
+                  ＋ 加入購物車
+                </button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 居家佈置靈感指南 (Home Decor Styling Guide) -->
+    <section class="decor-guide-section" id="guide">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-sub">Decor Inspiration</span>
+          <h2 class="section-title">植物如何改變家的空間氛圍？</h2>
+          <p class="section-desc">
+            不只是種植物，更是塑造你的理想生活日常。看看設計師如何運用各式盆栽點綴空間。
+          </p>
+        </div>
+
+        <div class="guide-tabs">
+          <button class="guide-tab-btn active" onclick="switchGuide('living', this)">客廳生活核心區</button>
+          <button class="guide-tab-btn" onclick="switchGuide('desk', this)">書房工作桌角落</button>
+          <button class="guide-tab-btn" onclick="switchGuide('window', this)">採光窗台與陽台</button>
+        </div>
+
+        <div class="guide-display-card" id="guideCard">
+          <div class="guide-image-pane">
+            <img id="guideImg" src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80" alt="客廳植物佈置">
+          </div>
+          <div class="guide-content-pane">
+            <span class="guide-tag" id="guideTag">LIVING ROOM CORNER</span>
+            <h3 class="guide-title" id="guideTitle">電視櫃轉角，立一株落落大方的自然依靠</h3>
+            <p class="guide-text" id="guideText">
+              客廳是全家人放鬆交誼的核心。利用高度 120-150cm 的琴葉榕或龜背芋擺設於沙發邊或窗角，能立刻消弭樑柱的剛硬直角，拉高視覺延伸感，營造如南洋度假木屋般的愜意放鬆感。
+            </p>
+            <ul class="guide-tips" id="guideTips">
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                搭配高腳木質盆架，讓空間更有呼吸層次
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                選擇闊葉品種，能有效吸附空氣中的微小懸浮灰塵
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                推薦搭配：琴葉榕、白脈龜背芋、白鳥蕉
+              </li>
+            </ul>
+            <div>
+              <a href="#catalog" class="btn btn-primary" style="padding: 10px 22px; font-size: 14px;">選購客廳植栽</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 限時滿額折扣區塊 (Promo Banner) -->
+    <section class="promo-banner">
+      <div class="container promo-grid">
+        <div>
+          <h2 class="promo-title">為新居添滿生機・【綠意入厝專案】</h2>
+          <p class="promo-desc">
+            正在裝潢新家或改造租屋處嗎？植得期待為你準備了最貼心的成家盆栽優惠組合。全館滿 $1,500 即享免運到府與專人拆箱健檢服務。
+          </p>
+        </div>
+        <div class="promo-box">
+          <div class="promo-code-title">專屬折扣碼・立省 $150</div>
+          <div class="promo-code">GREENHOME</div>
+          <p style="font-size: 12px; color: #a9d4b5; margin-bottom: 12px;">結帳時輸入即享專屬折抵</p>
+          <button class="btn btn-primary" onclick="copyPromo()" style="width: 100%; border-radius: 8px;">一鍵複製折扣碼</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 顧客真實回饋 (Customer Reviews) -->
+    <section class="reviews-section" id="reviews">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-sub">Reviews & Stories</span>
+          <h2 class="section-title">聽聽喜歡佈置的植友們怎麼說</h2>
+          <p class="section-desc">超過 3,000 位居家族的真實推薦，讓植物美化空間變得如此簡單。</p>
+        </div>
+
+        <div class="reviews-grid">
+          <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <p class="review-text">
+              「原本很擔心網購植物寄來會掉葉甚至斷枝，結果包裝非常嚴密穩固，連土都沒灑出來一粒！放在客廳電視櫃旁，整個客廳質感瞬間提升好多！」
+            </p>
+            <div class="reviewer">
+              <div class="reviewer-avatar">林</div>
+              <div class="reviewer-info">
+                <h4>林小姐・室內設計愛好者</h4>
+                <span>購買：琴葉榕 + 侘寂手作陶盆</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <p class="review-text">
+              「我是完全沒有種過植物的新手，店家的養護卡寫得很清楚，虎尾蘭擺在我的書桌已經兩個月了，依然長得非常挺拔翠綠，每天看著心情就很好。」
+            </p>
+            <div class="reviewer">
+              <div class="reviewer-avatar">陳</div>
+              <div class="reviewer-info">
+                <h4>陳先生・自由工作者</h4>
+                <span>購買：金邊虎尾蘭 + 圓葉鏡面草</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <p class="review-text">
+              「愛之蔓的垂墜感超美，掛在臥室窗邊隨風微微飄動，陽光透過葉片灑下來時好療癒。很喜歡植得期待挑選的花盆，省去自己另外買盆換盆的麻煩！」
+            </p>
+            <div class="reviewer">
+              <div class="reviewer-avatar">許</div>
+              <div class="reviewer-info">
+                <h4>許太太・軟裝風格部落客</h4>
+                <span>購買：愛之蔓錦吊盆 + 銀斑葛</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 常見問題 (FAQ) -->
+    <section class="faq-section" id="faq">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-sub">Q & A</span>
+          <h2 class="section-title">購買盆栽常見疑問</h2>
+          <p class="section-desc">我們為您整理了初次挑選室內盆栽的常見問題</p>
+        </div>
+
+        <div class="faq-wrap">
+          <div class="faq-item open">
+            <button class="faq-question">
+              <span>Q1. 如果家裡採光普通、日照不足，適合哪種盆栽？</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              建議挑選「耐陰型觀葉植物」，例如金邊虎尾蘭、龜背芋或青蘋果竹芋。這些植物原生地為雨林底層，在一般室內明亮散射光環境下就能穩定生長。
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Q2. 寄送過程中植株會受傷或枯死嗎？</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              植得期待採用獨家「防震固定充氣支架」與保水介質封存，能有效抵抗運輸晃動。若開箱時植株有任何非人為嚴重損壞，只要於 48 小時內拍照聯繫客服，我們提供 100% 免費補寄或全額退款保證！
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Q3. 買回去需要馬上幫植物換盆嗎？</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              完全不用！植得期待出貨的每一盆植物均已搭配合適尺寸的美感陶盆及專用調配顆粒透氣土，您收到後只需放置於通風散射光處讓植株適應新環境即可。
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Q4. 幾天需要澆一次水？會不會容易滋生蚊蟲？</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              室內植物澆水原則為「表土乾透再澆透」，切忌天天澆水導致悶根爛葉。我們使用的介質均經過高溫滅菌處理，並鋪有乾淨鋪面石，不易滋生小黑飛或雜菌。
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="wrap">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a class="brand" href="#top" aria-label="回到藍天咖啡首頁"><span class="brand-mark" aria-hidden="true">B</span><span class="brand-name">藍天咖啡 <small>BLUE SKY COFFEE</small></span></a>
-          <p>為喜愛手沖咖啡的你，留下一段慢慢品味、微微放晴的時間。</p>
-        </div>
-        <div>
-          <p class="footer-title">網站主題</p>
-          <ul class="footer-links"><li><a href="#story">我們的故事</a></li><li><a href="#coffee">本季選豆</a></li><li><a href="#brew">沖煮日常</a></li></ul>
-        </div>
-        <div>
-          <p class="footer-title">聯絡我們</p>
-          <ul class="footer-links"><li><a href="mailto:hello@bluesky.coffee">hello@bluesky.coffee</a></li><li>台中市西屯區僑光路 100 號</li><li>每日 10:00 — 19:00</li></ul>
+  <!-- 購物車抽屜 (Cart Drawer Modal) -->
+  <div class="cart-drawer-overlay" id="cartOverlay">
+    <div class="cart-drawer">
+      <div class="cart-header">
+        <h3>🛒 我的購物車</h3>
+        <button class="close-drawer" id="closeCartBtn" aria-label="關閉購物車">✕</button>
+      </div>
+
+      <div class="cart-body" id="cartList">
+        <div class="empty-cart-msg">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M8 12h8M12 8v8"/>
+          </svg>
+          <p>購物車目前空空如也<br>快去挑選喜愛的綠意盆栽吧！</p>
         </div>
       </div>
-      <div class="footer-bottom"><span>© 2025 BLUE SKY COFFEE. ALL RIGHTS RESERVED.</span><span>BREW SLOW · LIVE BRIGHT</span></div>
+
+      <div class="cart-footer">
+        <div class="cart-total-row">
+          <span>小計金額</span>
+          <span class="cart-total-price" id="cartTotal">NT$ 0</span>
+        </div>
+        <button class="btn btn-primary" style="width: 100%; border-radius: 8px;" onclick="checkout()">
+          立即前往結帳
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 商品快速預覽 Modal (Quick View) -->
+  <div class="modal-overlay" id="quickModal">
+    <div class="modal-box">
+      <button class="close-modal" onclick="closeModal()">✕</button>
+      <div class="modal-image">
+        <img id="modalImg" src="" alt="盆栽預覽">
+      </div>
+      <div class="modal-details">
+        <span class="guide-tag" id="modalCategory">分類</span>
+        <h3 class="guide-title" id="modalTitle" style="font-size: 22px; margin-bottom: 8px;">品名</h3>
+        <div class="product-price" id="modalPrice" style="margin-bottom: 16px;">NT$ 0</div>
+        <p class="guide-text" id="modalDesc" style="font-size: 14px; margin-bottom: 20px;">詳細描述說明</p>
+        <button class="btn btn-primary" id="modalAddBtn" style="border-radius: 8px;">
+          加入購物車
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 網站頁尾 (Footer) -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h2>植得期待</h2>
+          <p>
+            專注於居家軟裝美學的精選盆栽選品店。為喜愛空間佈置的你，精挑細選最適合室內光照與生活節奏的各類植栽。
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h3>風格分類</h3>
+          <ul class="footer-links">
+            <li><a href="#catalog">客廳大型落地植栽</a></li>
+            <li><a href="#catalog">書房辦公療癒小品</a></li>
+            <li><a href="#catalog">窗台飄逸垂吊綠瀑</a></li>
+            <li><a href="#catalog">新手必備耐陰品種</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>顧客服務</h3>
+          <ul class="footer-links">
+            <li><a href="#about">植栽到府運送保證</a></li>
+            <li><a href="#faq">新手澆水與光照須知</a></li>
+            <li><a href="#faq">換貨退款安心承諾</a></li>
+            <li><a href="#top">企業大量綠化採購</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col footer-newsletter">
+          <h3>訂閱綠意生活誌</h3>
+          <p>每月寄送一期居家佈置靈感與限時植友優惠券，不打擾只分享美好。</p>
+          <form class="newsletter-form" onsubmit="subscribeNews(event)">
+            <input type="email" placeholder="輸入您的 Email" required>
+            <button type="submit">訂閱</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 植得期待 Expect Plant. All rights reserved.</span>
+        <span>自然生活 · 居家綠意美學 · 盆栽專門販售</span>
+      </div>
     </div>
   </footer>
 
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <!-- 浮動提示 Toast -->
+  <div class="toast-msg" id="toast">
+    <span id="toastText">已成功加入購物車！</span>
+  </div>
 
+  <!-- JavaScript 互動功能 -->
   <script>
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
-    const toast = document.querySelector('#toast');
-    let toastTimer;
+    // 購物車資料狀態
+    let cart = [];
 
-    function closeMenu() {
-      navLinks.classList.remove('open');
-      menuToggle.setAttribute('aria-expanded', 'false');
-      menuToggle.setAttribute('aria-label', '開啟導覽選單');
-      menuToggle.textContent = '☰';
-    }
+    // 商品資料庫 (用於快速預覽)
+    const productData = {
+      1: {
+        name: "白脈龜背芋 (Monstera)",
+        category: "客廳大型 / 耐陰耐旱",
+        price: 980,
+        img: "https://images.unsplash.com/photo-1614594975525-e45190c55d0b?auto=format&fit=crop&w=700&q=80",
+        desc: "龜背芋擁有經典的深裂葉片與天然白斑脈絡，是北歐與日系無印風居家佈置的最佳主角。耐陰性佳，即使客廳只有散射光也能維持油綠生機。"
+      },
+      2: {
+        name: "琴葉榕 (Ficus Lyrata)",
+        category: "客廳大型 / 空間焦點",
+        price: 1480,
+        img: "https://images.unsplash.com/photo-1597055181300-e3633a917c9c?auto=format&fit=crop&w=700&q=80",
+        desc: "如提琴般優雅的革質大葉片，氣勢非凡。搭配天然藤編籃盆套，能立刻將客廳一角變身為網美雜誌封面般的質感空間。"
+      },
+      3: {
+        name: "金邊虎尾蘭 (Sansevieria)",
+        category: "書桌臥室 / 超耐陰",
+        price: 480,
+        img: "https://images.unsplash.com/photo-1599598425947-320d4334336c?auto=format&fit=crop&w=700&q=80",
+        desc: "NASA 認證的超強室內空氣清道夫，夜間亦能釋放氧氣。耐旱耐陰，即使兩至三週出差旅行不澆水依然挺拔如初，新手佈置首選。"
+      },
+      4: {
+        name: "銀斑葛吊盆 (Satin Pothos)",
+        category: "窗台垂吊 / 陽台綠幕",
+        price: 520,
+        img: "https://images.unsplash.com/photo-1512428813834-c702c7702b78?auto=format&fit=crop&w=700&q=80",
+        desc: "心形葉片上灑滿宛如銀箔的細緻斑紋。懸掛於窗邊或層架頂端，枝條垂曳如同柔美綠瀑，能增添垂直空間的立體層次。"
+      },
+      5: {
+        name: "青蘋果竹芋 (Calathea)",
+        category: "書桌療癒 / 斑紋葉藝",
+        price: 690,
+        img: "https://images.unsplash.com/photo-1545241047-6083a3684587?auto=format&fit=crop&w=700&q=80",
+        desc: "圓潤大葉上分佈著清新如青蘋果般的銀綠條紋，具有夜間葉片自然閉合的睡眠運動，是侘寂風與原木書房最迷人的桌上景觀。"
+      },
+      6: {
+        name: "圓葉鏡面草 (Pilea)",
+        category: "桌上小品 / 圓滿招財",
+        price: 420,
+        img: "https://images.unsplash.com/photo-1509423350716-97f9360b4e09?auto=format&fit=crop&w=700&q=80",
+        desc: "圓形葉片小巧討喜，象徵圓圓滿滿。搭配簡約素雅的水泥盆，無論擺在工作筆電旁或是玄關小几，都能瞬間驅散工作疲倦感。"
+      },
+      7: {
+        name: "白鳥蕉天堂鳥 (Strelitzia)",
+        category: "客廳玄關 / 熱帶南洋風",
+        price: 1680,
+        img: "https://images.unsplash.com/photo-1598880940371-c756e015fea1?auto=format&fit=crop&w=700&q=80",
+        desc: "筆直舒展的巨大扇形葉片，自帶度假般的明亮大器風範。適合大坪數客廳或採光充足的玄關走廊，是營造豪宅氣度的軟裝秘訣。"
+      },
+      8: {
+        name: "愛之蔓錦 (String of Hearts)",
+        category: "窗台吊掛 / 浪漫心形",
+        price: 560,
+        img: "https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?auto=format&fit=crop&w=700&q=80",
+        desc: "串串相連的厚質小愛心葉片，帶有粉白錦斑。非常耐旱好照護，懸掛在臥室床頭或窗欞，微風吹過格外浪漫清新。"
+      }
+    };
 
-    menuToggle.addEventListener('click', () => {
-      const isOpen = navLinks.classList.toggle('open');
-      menuToggle.setAttribute('aria-expanded', String(isOpen));
-      menuToggle.setAttribute('aria-label', isOpen ? '關閉導覽選單' : '開啟導覽選單');
-      menuToggle.textContent = isOpen ? '×' : '☰';
-    });
+    // 居家靈感導覽切換資料
+    const guideData = {
+      living: {
+        tag: "LIVING ROOM CORNER",
+        title: "電視櫃轉角，立一株落落大方的自然依靠",
+        text: "客廳是全家人放鬆交誼的核心。利用高度 120-150cm 的琴葉榕或龜背芋擺設於沙發邊或窗角，能立刻消弭樑柱的剛硬直角，拉高視覺延伸感，營造如南洋度假木屋般的愜意放鬆感。",
+        img: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80",
+        tips: [
+          "搭配高腳木質盆架，讓空間更有呼吸層次",
+          "選擇闊葉品種，能有效吸附空氣中的微小懸浮灰塵",
+          "推薦搭配：琴葉榕、白脈龜背芋、白鳥蕉"
+        ]
+      },
+      desk: {
+        tag: "STUDY & DESK VIBES",
+        title: "工作疲勞時，一抬頭就是舒心的蔥蘢綠意",
+        text: "長時間盯著電腦螢幕容易造成雙眼乾澀與思緒緊繃。在桌面右側或電腦旁放置 15-25cm 的耐陰盆栽（如鏡面草、虎尾蘭、竹芋），不僅不佔據工作區域，更能隨時舒緩眼部肌肉與工作壓力。",
+        img: "https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=800&q=80",
+        tips: [
+          "挑選不易落葉且需水量低的品種，保持桌面乾爽整潔",
+          "使用低飽和度暖灰或米白陶盆，與木質或金屬書桌百搭",
+          "推薦搭配：圓葉鏡面草、青蘋果竹芋、金邊虎尾蘭"
+        ]
+      },
+      window: {
+        tag: "WINDOW & BALCONY",
+        title: "飄逸垂墜葉簾，讓微風與光影流淌入室",
+        text: "窗台與陽台擁有家中最充沛的明亮光線與對流通風。運用天花板掛勾或高層架，讓銀斑葛與愛之蔓的藤蔓自然垂落，形成一道天然生動的綠色百葉窗，為家中注入生生不息的浪漫生命力。",
+        img: "https://images.unsplash.com/photo-1512428813834-c702c7702b78?auto=format&fit=crop&w=800&q=80",
+        tips: [
+          "善用麻繩或幾何吊架，豐富垂直空間裝飾",
+          "通風良好處水分散失較快，可適時以噴霧瓶補充葉面濕度",
+          "推薦搭配：銀斑葛吊盆、愛之蔓錦、黃金葛"
+        ]
+      }
+    };
 
-    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
-
+    // 提示通知工具函式
     function showToast(message) {
-      window.clearTimeout(toastTimer);
-      toast.textContent = message;
+      const toast = document.getElementById('toast');
+      const toastText = document.getElementById('toastText');
+      toastText.textContent = message;
       toast.classList.add('show');
-      toastTimer = window.setTimeout(() => toast.classList.remove('show'), 2600);
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2500);
     }
 
-    document.querySelectorAll('[data-coffee]').forEach(button => {
-      button.addEventListener('click', () => showToast(`已將「${button.dataset.coffee}」加入你的收藏。`));
-    });
+    // 加入購物車功能
+    function addToCart(name, price, img) {
+      const existing = cart.find(item => item.name === name);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ name, price, img, qty: 1 });
+      }
+      updateCartUI();
+      showToast(`已將「${name}」放入購物車！`);
+    }
 
-    document.querySelector('#subscribeForm').addEventListener('submit', event => {
-      event.preventDefault();
-      if (!event.currentTarget.checkValidity()) return;
-      event.currentTarget.reset();
-      showToast('謝謝訂閱，下一封晴朗的風味通信即將寄出。');
-    });
+    // 移除購物車項目
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCartUI();
+    }
 
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const reveals = document.querySelectorAll('.reveal');
-    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
-      reveals.forEach(element => element.classList.add('visible'));
-    } else {
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
+    // 更新購物車畫面
+    function updateCartUI() {
+      const cartCount = document.getElementById('cartCount');
+      const cartList = document.getElementById('cartList');
+      const cartTotal = document.getElementById('cartTotal');
+
+      const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+      cartCount.textContent = totalItems;
+
+      if (cart.length === 0) {
+        cartList.innerHTML = `
+          <div class="empty-cart-msg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M8 12h8M12 8v8"/>
+            </svg>
+            <p>購物車目前空空如也<br>快去挑選喜愛的綠意盆栽吧！</p>
+          </div>
+        `;
+        cartTotal.textContent = "NT$ 0";
+        return;
+      }
+
+      let html = '';
+      let totalAmount = 0;
+      cart.forEach((item, index) => {
+        totalAmount += item.price * item.qty;
+        html += `
+          <div class="cart-item">
+            <img src="${item.img}" alt="${item.name}" class="cart-item-img">
+            <div class="cart-item-info">
+              <h4>${item.name}</h4>
+              <p>NT$ ${item.price} × ${item.qty}</p>
+            </div>
+            <button class="cart-item-remove" onclick="removeFromCart(${index})" title="刪除">✕</button>
+          </div>
+        `;
+      });
+
+      cartList.innerHTML = html;
+      cartTotal.textContent = `NT$ ${totalAmount.toLocaleString()}`;
+    }
+
+    // 結帳提示
+    function checkout() {
+      if (cart.length === 0) {
+        alert("您的購物車目前是空的，請先挑選盆栽唷！");
+        return;
+      }
+      alert("感謝您的喜愛！正在為您引導至安全加密結帳頁面（已自動為您套用運送保護險）。");
+      cart = [];
+      updateCartUI();
+      document.getElementById('cartOverlay').classList.remove('active');
+    }
+
+    // 分類篩選功能
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const productCards = document.querySelectorAll('.product-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.dataset.filter;
+        productCards.forEach(card => {
+          if (filter === 'all' || card.dataset.category.includes(filter)) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
           }
         });
-      }, { threshold: .12 });
-      reveals.forEach(element => observer.observe(element));
+      });
+    });
+
+    // 居家靈感導覽切換
+    function switchGuide(type, btn) {
+      document.querySelectorAll('.guide-tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const data = guideData[type];
+      document.getElementById('guideTag').textContent = data.tag;
+      document.getElementById('guideTitle').textContent = data.title;
+      document.getElementById('guideText').textContent = data.text;
+      document.getElementById('guideImg').src = data.img;
+
+      const tipsEl = document.getElementById('guideTips');
+      tipsEl.innerHTML = data.tips.map(tip => `
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          ${tip}
+        </li>
+      `).join('');
     }
+
+    // 折扣碼複製
+    function copyPromo() {
+      navigator.clipboard.writeText('GREENHOME').then(() => {
+        showToast('折扣碼【GREENHOME】已複製到剪貼簿！');
+      }).catch(() => {
+        showToast('折扣碼為：GREENHOME');
+      });
+    }
+
+    // 電子報訂閱
+    function subscribeNews(e) {
+      e.preventDefault();
+      e.target.reset();
+      showToast('感謝訂閱！首期居家綠意指南已寄送至您的信箱。');
+    }
+
+    // FAQ 手風琴切換
+    document.querySelectorAll('.faq-question').forEach(button => {
+      button.addEventListener('click', () => {
+        const item = button.parentElement;
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) {
+          item.classList.add('open');
+        }
+      });
+    });
+
+    // 購物車抽屜開啟/關閉
+    const openCartBtn = document.getElementById('openCartBtn');
+    const closeCartBtn = document.getElementById('closeCartBtn');
+    const cartOverlay = document.getElementById('cartOverlay');
+
+    openCartBtn.addEventListener('click', () => cartOverlay.classList.add('active'));
+    closeCartBtn.addEventListener('click', () => cartOverlay.classList.remove('active'));
+    cartOverlay.addEventListener('click', (e) => {
+      if (e.target === cartOverlay) cartOverlay.classList.remove('active');
+    });
+
+    // 手機版漢堡選單切換
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navMenu = document.getElementById('navMenu');
+
+    mobileToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('open');
+      mobileToggle.textContent = navMenu.classList.contains('open') ? '✕' : '☰';
+    });
+
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('open');
+        mobileToggle.textContent = '☰';
+      });
+    });
+
+    // 商品快速預覽 Modal
+    function openProductModal(id) {
+      const data = productData[id];
+      if (!data) return;
+
+      document.getElementById('modalImg').src = data.img;
+      document.getElementById('modalCategory').textContent = data.category;
+      document.getElementById('modalTitle').textContent = data.name;
+      document.getElementById('modalPrice').textContent = `NT$ ${data.price.toLocaleString()}`;
+      document.getElementById('modalDesc').textContent = data.desc;
+
+      const addBtn = document.getElementById('modalAddBtn');
+      addBtn.onclick = function() {
+        addToCart(data.name, data.price, data.img);
+        closeModal();
+      };
+
+      document.getElementById('quickModal').classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('quickModal').classList.remove('active');
+    }
+
+    document.getElementById('quickModal').addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
+    });
   </script>
 </body>
 </html>
