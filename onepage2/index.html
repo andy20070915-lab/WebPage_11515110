@@ -424,6 +424,44 @@
       transform: scale(1.03);
     }
 
+    .catalog-video-row {
+      display: grid;
+      grid-template-columns: minmax(0, 560px) 1fr;
+      gap: 36px;
+      align-items: center;
+      margin: 0 0 32px;
+    }
+
+    .catalog-video-row iframe {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 0;
+      border-radius: var(--radius-md);
+      background: var(--primary-dark);
+      box-shadow: var(--shadow-md);
+    }
+
+    .catalog-video-copy {
+      max-width: 390px;
+      color: var(--text-muted);
+    }
+
+    .catalog-video-copy strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--primary-dark);
+      font-family: var(--font-serif);
+      font-size: 22px;
+    }
+
+    @media (max-width: 768px) {
+      .catalog-video-row {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+    }
+
     .floating-decor-card {
       position: absolute;
       background: rgba(255, 255, 255, 0.95);
@@ -1609,10 +1647,10 @@
         <div class="hero-image-wrap">
           <div class="hero-image-card">
             <!-- 居家空間與大型盆栽高質感影像 -->
-            <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1000&q=80" 
+              <img src="images/page1.jfif" width="400" height="300"
                  alt="陽光灑落的客廳佈置著優雅綠色盆栽" 
                  loading="eager"
-                 onerror="this.src='https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=1000&q=80'">
+                onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=1000&q=80'">
           </div>
 
           <div class="floating-decor-card decor-card-1">
@@ -1682,6 +1720,11 @@
           <p class="section-desc">
             依照不同居家採光、房間機能與空間尺度，挑選最契合的生活綠伴。
           </p>
+        </div>
+
+        <div class="catalog-video-row">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/hMOYa4EBntI" title="植得期待盆栽生活影片" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          <p class="catalog-video-copy"><strong>讓綠意走進日常</strong>從植物的姿態與居家光線開始，找到適合自己的綠色生活提案。</p>
         </div>
 
         <!-- 分類按鈕列 -->
